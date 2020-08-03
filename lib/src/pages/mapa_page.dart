@@ -37,11 +37,11 @@ class _MapaPageState extends State<MapaPage> {
   _crearMapa() {
     return TileLayerOptions(
       urlTemplate: 'https://api.mapbox.com/styles/v1/'
-          '{id}/{z}/{x}/{y}@2x?access_token={accessToken}',
+          '{id}/tiles/{z}/{x}/{y}@2x?access_token={accessToken}',
       additionalOptions: {
         'accessToken':
             'pk.eyJ1IjoicmljaGpvdGFlZGdlIiwiYSI6ImNrYXVldHlxYTFsdXoyd3BsbnhzdWI4aDgifQ.U46WiA5K8owiRK0cFhhu1g',
-        'id': 'mapbox/streets-v11/tiles',
+        'id': 'mapbox/streets-v11',
       },
     );
   }
