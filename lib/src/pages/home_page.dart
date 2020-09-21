@@ -6,7 +6,7 @@ import 'package:qrreaderapp/src/models/scan_model.dart';
 import 'package:qrreaderapp/src/pages/direcciones_page.dart';
 import 'package:qrreaderapp/src/pages/mapas_pages.dart';
 
-import 'package:qrcode_reader/qrcode_reader.dart';
+import 'package:barcode_scan/barcode_scan.dart';
 import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
@@ -74,8 +74,11 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _scanQR(BuildContext context) async {
-    String futureString = 'https://www.floristeriaanthony.com';
-    String futureString2 = 'geo:74.24426803763072,-2.2507114487818853';
+    // 'https://www.floristeriaanthony.com';
+    // 'geo:74.24426803763072,-2.2507114487818853';
+
+    // var futureString = 'https://www.floristeriaanthony.com';
+    var futureString;
 
     // try {
     //   futureString = await new QRCodeReader().scan();
@@ -83,12 +86,21 @@ class _HomePageState extends State<HomePage> {
     //   futureString = e.toString();
     // }
 
-    if (futureString != null) {
-      final nuevoScan = ScanModel(valor: futureString);
-      scanBloc.agregarScan(nuevoScan);
+    try {
+      futureString = await BarcodeScanner.scan();
+    } catch (e) {
+      print(e.toString());
+      // futureString = e.toString();
+    }
 
-      final nuevoScan2 = ScanModel(valor: futureString2);
-      scanBloc.agregarScan(nuevoScan2);
+    print(futureString.rawContent);
+    print(futureString.type);
+    print(futureString.format);
+    print(futureString.formatNote);
+
+    if (futureString != null && futureString.type == 'barcode') {
+      final nuevoScan = ScanModel(valor: futureString.rawContent);
+      scanBloc.agregarScan(nuevoScan);
 
       if (Platform.isIOS) {
         Future.delayed(Duration(milliseconds: 750), () {

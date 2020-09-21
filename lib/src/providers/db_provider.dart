@@ -40,6 +40,7 @@ class DBProvier {
     );
   }
 
+  // CREAR Registros
   nuevoScanRaw(ScanModel nuevoScan) async {
     final db = await database;
 
@@ -84,6 +85,16 @@ class DBProvier {
     return list;
   }
 
+  Future<List<ScanModel>> getScansPorTipo(String tipo) async {
+    final db = await database;
+    final res = await db.rawQuery("SELECT * FROM Scans WHERE tipo = '$tipo'");
+
+    List<ScanModel> list =
+        res.isNotEmpty ? res.map((e) => ScanModel.fromJson(e)).toList() : [];
+
+    return list;
+  }
+
   Future<int> uodateScan(ScanModel nuevoScan) async {
     final db = await database;
 
@@ -104,7 +115,7 @@ class DBProvier {
   Future<int> deleteAllScan() async {
     final db = await database;
 
-    final res = db.delete('Scans');
+    final res = db.rawDelete('DELETE FROM Scans');
 
     return res;
   }

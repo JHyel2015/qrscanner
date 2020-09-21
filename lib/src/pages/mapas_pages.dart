@@ -4,11 +4,13 @@ import 'package:qrreaderapp/src/models/scan_model.dart';
 import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class MapasPage extends StatelessWidget {
-  const MapasPage({Key key}) : super(key: key);
+  MapasPage({Key key}) : super(key: key);
+  final scansBloc = new ScansBloc();
 
   @override
   Widget build(BuildContext context) {
-    final scansBloc = new ScansBloc();
+
+    scansBloc.obtenerScans();
 
     return StreamBuilder(
         stream: scansBloc.scansStream,
