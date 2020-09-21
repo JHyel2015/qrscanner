@@ -4,7 +4,6 @@ import 'package:qrreaderapp/src/providers/db_provider.dart';
 import 'package:latlong/latlong.dart';
 
 class MapaPage extends StatefulWidget {
-  MapaPage({Key key}) : super(key: key);
 
   @override
   _MapaPageState createState() => _MapaPageState();

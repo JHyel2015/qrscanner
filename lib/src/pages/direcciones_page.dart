@@ -4,7 +4,6 @@ import 'package:qrreaderapp/src/models/scan_model.dart';
 import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class DireccionesPage extends StatelessWidget {
-  DireccionesPage({Key key}) : super(key: key);
   final scansBloc = new ScansBloc();
 
   @override

@@ -10,7 +10,6 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();
@@ -78,7 +77,7 @@ class _HomePageState extends State<HomePage> {
     // 'geo:74.24426803763072,-2.2507114487818853';
 
     // var futureString = 'https://www.floristeriaanthony.com';
-    var futureString;
+    dynamic futureString = '';
 
     // try {
     //   futureString = await new QRCodeReader().scan();
@@ -89,8 +88,7 @@ class _HomePageState extends State<HomePage> {
     try {
       futureString = await BarcodeScanner.scan();
     } catch (e) {
-      print(e.toString());
-      // futureString = e.toString();
+      futureString = e.toString();
     }
 
     print(futureString.rawContent);
