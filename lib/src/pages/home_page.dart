@@ -10,7 +10,6 @@ import 'package:barcode_scan/barcode_scan.dart';
 import 'package:qrreaderapp/src/utils/utils.dart' as utils;
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -92,11 +91,8 @@ class _HomePageState extends State<HomePage> {
     }
 
     print(futureString.rawContent);
-    print(futureString.type);
-    print(futureString.format);
-    print(futureString.formatNote);
 
-    if (futureString != null && futureString.type == 'barcode') {
+    if (futureString != null) {
       final nuevoScan = ScanModel(valor: futureString.rawContent);
       scanBloc.agregarScan(nuevoScan);
 
